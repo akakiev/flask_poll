@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Create a New Survey</h2>
+    <form action="{{ url_for('create_survey') }}" method="POST">
+        <div>
+            <label for="question">Question:</label>
+            <input type="text" name="question" id="question" required>
+        </div>
+        <div id="options">
+            <label for="option1">Option 1:</label>
+            <input type="text" name="options" id="option1" required>
+        </div>
+        <button type="button" onclick="addOption()">Add Another Option</button>
+        <button type="submit">Create Survey</button>
+    </form>
+    <script>
+        function addOption() {
+            const optionsDiv = document.getElementById('options');
+            const newOptionNum = optionsDiv.children.length / 2 + 1;
+            const newLabel = document.createElement('label');
+            newLabel.setAttribute('for', `option${newOptionNum}`);
+            newLabel.textContent = `Option ${newOptionNum}:`;
+            const newInput = document.createElement('input');
+            newInput.setAttribute('type', 'text');
+            newInput.setAttribute('name', 'options');
+            newInput.setAttribute('id', `option${newOptionNum}`);
+            optionsDiv.appendChild(newLabel);
+            optionsDiv.appendChild(newInput);
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Results for: {{ survey.question }}</h2>
+    <ul>
+        {% for option in survey.options %}
+            <li>{{ option.option_text }}: {{ option.votes }} votes</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
